@@ -15,12 +15,7 @@ Vous trouverez ci-dessous des liens vers d'autres guides d'installation.
 
 ## Spécifications d'environnement
 Pour effectuer les étapes ci-dessous, nous avons configuré une seule machine
-Ubuntu 18.04 de 8Go de RAM à l'aide de son stockage local.
-
-Veuillez noter que la version que nous avons installée ici est la 6.2.
-Des modifications ont été apportées au modèle de licence dans des versions plus
-récentes, notamment l'inclusion des fonctionnalités de base du X-Pack dans
-les packages d'installation par défaut.
+Ubuntu 18.04 de 8Go de RAM.
 
 ## Installer Elasticsearch
 Tout d'abord, vous devez ajouter la clé de signature d'Elastic afin que le package
@@ -162,7 +157,7 @@ Ensuite, créez un nouveau fichier de configuration Logstash à: /etc/logstash/c
 sudo vim /etc/logstash/conf.d/apache-01.conf
 ```
 Entrez la configuration Logstash suivante (modifiez le chemin du fichier que vous avez téléchargé en conséquence):
-```
+```conf
 input {
   file {
     path => "/var/log/apache-daily-access.log"
@@ -197,6 +192,7 @@ dont le modèle peut maintenant être défini dans Kibana.
 Dans Kibana, accédez à Management → Kibana Index Patterns. et cliquez sur le bouton
 `create index pattern`
 ![](images/index-pattern-management.png)
+
 Kibana devrait afficher l'index Logstash et l'index Metricbeat si vous avez suivi
 les étapes d'installation et d'exécution de Metricbeat.
 ![](images/indices-created.png)
