@@ -302,17 +302,23 @@ yellow open   apache-2021.02.13                   TZ7GnFf1Q_SVTZgZ74n7qA   1   1
 ## Kibana
 ### Index Patterns
 Rendez-vous ensuite sur **Kibana** depuis l'url http://192.16.33.10:5601/. Pour visualiser notre index, allez sur le menu à gauche et cliquez sur "**Stack Management**" :
+
 ![stack management kibana](images/menu-stack-management.jpg)
+
 Par la suite, vous devez ajouter un pattern index dans kibana afin de prendre en considération vos indexs quotidiens Apache récupérés par elasticsearch. Cliquez sur "Index Patterns" sur le volet à gauche et cliquez sur le bouton "Create index pattern" :
+
 ![création de l'index pattern kibana](images/create-pattern-index.jpg)
 
 Dans notre cas le préfix de nos indexs apache est "apache-", donc le pattern index à créer dans kibana sera apache-* :
+
 ![définir l'index pattern kibana](images/define-pattern-index.jpg)
 
 Cliquez ensuite sur "Next Step". Ensuite il nous demande par quel moyen il doit gérer le filtre temporel (timestamp). Ce filtre est utile pour filtrer et affiner nos données par plage horaire. Nous avions prévu le coup sur notre configuration logstash en créant un champ @timestamp, et c'est celui là qu'on sélectionnera :
+
 ![ajout de la plage horaire sur l'index pattern kibana](images/timestamp-pattern-index.jpg)
 
 Enfin, cliquez sur le bouton "Create index pattern" et vous verrez apparaître tous vos champs :
+
 ![vue de l'index pattern kibana](images/view-pattern-index.jpg)
 
 ### Découvrir vos logs
@@ -320,20 +326,24 @@ Pour découvrir vos logs, sur le menu à gauche cliquez sur Discover :
 discover kibana
 
 Ensuite, Faites quelques visites depuis votre navigateur sur la page d'accueil d'apache http://192.168.33.10/ et revenez sur la page de discover :
+
 ![discover view kibana](images/menu-discover.jpg)
 
 Vous avez également la possibilité de filtrer vos logs par champ depuis la barre de recherche du Discover :
 ![discover filter kibana](images/index-pattern-view.jpg)
 
 Exemple : "response : 404" pour n'afficher que les requêtes en erreur 404.
+
 ![Dashboard](images/index-pattern-search.jpg)
 
 L'étape suivante est de créer un tableau de bord afin de visualiser une collection de visualisations en temps réel. Pour commencer, ouvrez le menu, accédez à Dashboard , puis cliquez sur "Create dashboard" :
+
 ![menu dashboard kibana](images/kibana-menu-dashboard.jpg)
 
 Pour ajouter des éléments à votre dashboard vous devez créer des visualisations Kibana que vous pouvez déplacer et redimensionner dans votre dashboard. Vous pouvez ajouter des visualisations à partir de plusieurs indexs patterns et la même visualisation peut apparaître dans plusieurs tableaux de bord.
 
 Dans notre exemple nous allons commencer par créer une visualisation qui permet d'afficher le nombre total d'utilisateurs unique. Pour ce faire, créez une visualisation en cliquant sur "Create new" et dans la fenêtre de "New visualisation" nous allons choisir le type de visualisation "Metric" :
+
 ![création d'une visualisation Dashboard de type metric dans kibana](images/metric_visualisation_kibana.jpg)
 
 Pour information, voici la liste des types de visualisations Kibana les plus fréquemment utilisées :
@@ -356,11 +366,13 @@ Unique Count : nombre unique d'une métrique.
 >Dans le langage Elasticsearch, un document correspond aux données JSON sérialisées.
 
 Dans notre cas, nous utiliserons l'agrégation Unique Count en utilisant le champ host :
+
 ![création de l'agrégation Unique Count kibana](images/apache-kibana-uniq-user.jpg)
 
 Cliquez ensuite sur "Save" et choisissez le nom de votre visualisation.
 
 Rajoutons un autre graphique qui permet d'afficher la taille moyenne des requêtes temporellement. Pour ce type de besoin nous aurons besoin d'une visualisation de type "area". Pour l'axe Y nous allons utiliser une agrégation de type "Average" sur le champ byte :
+
 ![configuration de l'axe y de la visualisation apache de type area dans kibana](images/apache-kibana-bytes-y-axis.jpg)
 
 Pour l'axe X ça sera un peu différent car nous utiliserons les Bucket aggregations qui trient les documents en compartiments selon le contenu du document. Voici les valeurs les plus communes :
@@ -372,17 +384,23 @@ Range : plages de valeurs pour un champ numérique.
 Terms : Spécifiez le nombre d'éléments supérieurs ou inférieurs d'un champ donné à afficher, classés par nombre ou par une métrique personnalisée.
 
 Pour notre cas nous utiliserons le type "Date histogram" :
+
 ![configuration de l'axe x de la visualisation apache de type area dans kibana](images/apache-kibana-bytes-x-axis.jpg)
 
 Un dernier graphique avant de clôturer cet atelier. Nous allons cette fois-ci afficher le top des requêtes en erreur sous forme d'un tableau. Créez une nouvelle visualisation de type "Data table" avec comme configuration une agrégation de type "Count" (par défaut) et une Bucket aggregation de type "Terms" sur le champ "request" et trier par ordre décroissant par l'agrégation "Count", ce qui nous affichera pour le moment que les pages web les plus visitées. Cette partie de la configuration ressemblera à ceci :
+
 ![création d'une visualisation Dashboard de type Table dans kibana](images/kibana-requests-error-part1.jpg)
 
 Ensuite pour récupérer que les requêtes en erreur, nous filtrerons ces requêtes si elles ont une réponse différente au code HTTP 200. Pour cela, vous devez cliquer sur le bouton situé en haut à gauche nommée "+ Add filter" et ajouter le filtre suivant :
+
 ![ajout d'un filtre pour notre Dashboard de type Table dans kibana](images/kibana-requests-error-part2.jpg)
 
 Lorsque vous avez terminé d'ajouter et d'organiser les panneaux, enregistrez le tableau de bord. Dans la barre d'outils Kibana, cliquez sur "Save" et saisissez ensuite le titre du tableau de bord et la description facultative , puis enregistrez votre tableau de bord.
+
 ![sauvegarde du dashboard dans kibana](images/kibana-dashboard-save.jpg)
+
 Le dashboard final ressemble à ceci :
+
 ![visualisation du dashboard dans kibana](images/kibana-final-dashboard.jpg)
 
 ## Conclusion
