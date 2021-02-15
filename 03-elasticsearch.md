@@ -108,7 +108,7 @@ Le pattern **grok** sera le suivant :
 ```
 filter {
     grok {
-        match => { "message" => "%{IP:client} %{WORD:method} %{URIPATHPARAM:request} %{NUMBER:bytes} %{NUMBER:duration}" }
+      match => [ "message", "%{IP:client_ip} %{USER:ident} %{USER:auth} \[%{HTTPDATE:apache_timestamp}\] \"%{WORD:method} %{URIPATHPARAM:request} HTTP/%{NUMBER:http_version}\" %{NUMBER:server_response} %{NUMBER:bytes}" ]
     }
 }
 ```
@@ -124,6 +124,11 @@ Pour notre besoin, nous allons plutôt découvrir et utiliser des patterns **APA
 
 :information_source: Information
 >Pour les plus curieux d'entre vous qui souhaitent connaître le pattern complet de COMMONAPACHELOG et COMBINEDAPACHELOG , regardez la ligne sous le commentaire "# Log formats" sur les sources de l'APACHE pattern.
+> de toute façon il correspond à ce pattern:
+COMBINEDAPACHELOG %{IPORHOST:clientip} %{USER:ident} %{USER:auth}
+\[%{HTTPDATE:timestamp}\] "(?:%{WORD:verb} %{NOTSPACE:request}
+(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})" %{NUMBER:response}
+(?:%{NUMBER:bytes}|-) %{QS:referrer} %{QS:agent}
 
 Pour tester vos patterns, vous pouvez soit utiliser un plugin de sortie que nous verrons dans la section suivante, ou bien utilisez un débogueur grok en ligne, comme ***grokdebug***. Pour utiliser l'exactitude d'exécution de votre pattern sur votre débogueur, vous n'avez qu'à copier quelques lignes de vos logs apaches :
 ```
@@ -169,7 +174,7 @@ filter {
     }
 }
 ```
-J'ai fait exprès de rajouter deux nouveaux filtre [date](https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html) et [mutate](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html), car ils nous serviront plus tard pour nos visualisations sur Kibana :
+J'ai fait exprès de rajouter deux nouveaux filtres [date](https://www.elastic.co/guide/en/logstash/current/plugins-filters-date.html) et [mutate](https://www.elastic.co/guide/en/logstash/current/plugins-filters-mutate.html), car ils nous serviront plus tard pour nos visualisations sur Kibana :
 
 Par défaut, **logstash** basera son *horodatage* sur l'heure à laquelle l'entrée du fichier de log a été lue et non sur l'horodatage fourni par le fichier de logs Apache. D'où l'utilisation du filtre de **date** qui basera son horodatage sur les dates des champs filtrés par grok, soit l'horodatage réel fourni par le fichier de log Apache.
 
