@@ -161,12 +161,15 @@ Dirigez-vous vers le panneau « Visualize », et commençons par un premier pann
 
 ### Aggregated bar chart for processes
 Pour créer votre premier tableau de bord, cliquez sur « Créer une nouvelle visualisation » dans le coin supérieur droit de Kibana. Choisissez un panneau à barres verticales.
+![](images/vertical-bar-visu.png)
 L'objectif principal est de créer un panneau qui ressemble à ceci:
-![]
+![](images/log-split-by-host.png)
 Comme vous pouvez le voir, le graphique à barres fournit un nombre total de journaux par processus, de manière agrégée.
-Le graphique à barres peut également être divisé par hôte si vous travaillez avec plusieurs hôtes.
 ![]
+Le graphique à barres peut également être divisé par hôte si vous travaillez avec plusieurs hôtes.
 
+Voilà que doit-on faire:
+![](images/rsyslog-bar-chart-cheatsheet.png)
 
 ### Pie by program name
 
