@@ -162,13 +162,14 @@ Dirigez-vous vers le panneau « Visualize », et commençons par un premier pann
 ### Aggregated bar chart for processes
 Pour créer votre premier tableau de bord, cliquez sur « Créer une nouvelle visualisation » dans le coin supérieur droit de Kibana. Choisissez un panneau à barres verticales.
 
-![](images/rsyslog-bar-chart.png)
 L'objectif principal est de créer un panneau qui ressemble à ceci:
 
-![](images/rsyslog-log-split-by-host.png)
+![](images/rsyslog-bar-chart.png)
+
 Comme vous pouvez le voir, le graphique à barres fournit un nombre total de journaux par processus, de manière agrégée.
-![](images/rsyslog-log-split-by-process.png)
 Le graphique à barres peut également être divisé par hôte si vous travaillez avec plusieurs hôtes.
+
+![](images/rsyslog-log-split-by-process.png)
 
 Voilà que doit-on faire:
 
@@ -177,7 +178,12 @@ Voilà que doit-on faire:
 ### Pie by program name
 
 De manière très similaire à ce que nous avons fait auparavant, l'objectif est de créer un panneau circulaire qui divise les proportions du journal par nom de programme.
+
 ![Pie by program name](images/rsyslog-pie-by-program.png)
+
+Donc voilà ce que nous devons faire:
+
+![Pie by program name](images/rsyslog-pie-by-program-cheatsheet.png)
 
 ### Pie by severity
 Ce panneau ressemble exactement à celui que nous avons fait auparavant, sauf qu'il divise les journaux par gravité.
@@ -185,13 +191,17 @@ Cela peut être très utile lorsque vous avez une panne majeure sur l'un de vos 
 Il fournit également un moyen simple de voir le récapitulatif de la gravité de votre journal sur une période donnée si vous êtes intéressé, par exemple, à voir quelles gravité se produisent pendant la nuit ou lors d'événements particuliers.
 ![Pie by severity](images/rsyslog-pie-by-severity.png)
 
+Procédez comme suite:
+
+![Pie by severity](images/rsyslog-pie-by-severity-cheatsheet.png)
+
 ### Monitoring SSH entries
 Celui-ci est un peu spécial, car vous pouvez aller directement dans l' onglet «Découvrir» pour construire votre panel.
 Lorsque vous entrez dans l'onglet de découverte, votre «logstash- *» doit être automatiquement sélectionné.
 À partir de là, dans la barre de filtre, tapez le filtre suivant «nom du programme: ssh *» .
 Comme vous pouvez le voir, vous avez maintenant un accès direct à tous les journaux liés au service SSHd sur votre machine. Vous pouvez par exemple suivre les tentatives d'accès illégales ou les mauvaises connexions.
-![]()
+![](images/rsyslog-ssh.png)
 Pour qu'il soit accessible dans le panneau du tableau de bord, cliquez sur l' option «Enregistrer» , et donnez un nom à votre panneau.
 Maintenant, dans le panneau du tableau de bord, vous pouvez cliquer sur «Ajouter», et choisir le panneau que vous venez de créer.
 Joli! Maintenant, votre panneau est inclus dans votre tableau de bord, à partir du panneau de découverte.
-![]()
+![](images/rsyslog-ssh-1.png)
