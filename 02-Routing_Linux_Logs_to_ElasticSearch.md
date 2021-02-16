@@ -175,6 +175,8 @@ Voilà que doit-on faire:
 
 ![](images/rsyslog-bar-chart-cheatsheet.png)
 
+Le bucket X-Axis doit être de type `Date Histogram`
+
 ### Pie by program name
 
 De manière très similaire à ce que nous avons fait auparavant, l'objectif est de créer un panneau circulaire qui divise les proportions du journal par nom de programme.
@@ -196,12 +198,12 @@ Procédez comme suite:
 ![Pie by severity](images/rsyslog-pie-by-severity-cheatsheet.png)
 
 ### Monitoring SSH entries
-Celui-ci est un peu spécial, car vous pouvez aller directement dans l' onglet «Découvrir» pour construire votre panel.
-Lorsque vous entrez dans l'onglet de découverte, votre «logstash- *» doit être automatiquement sélectionné.
-À partir de là, dans la barre de filtre, tapez le filtre suivant «nom du programme: ssh *» .
-Comme vous pouvez le voir, vous avez maintenant un accès direct à tous les journaux liés au service SSHd sur votre machine. Vous pouvez par exemple suivre les tentatives d'accès illégales ou les mauvaises connexions.
+Celui-ci est un peu spécial, car vous pouvez aller directement dans l' onglet «Discover» pour construire votre panel.
+Lorsque vous entrez dans l'onglet de Discover, votre «syslog-*» doit être automatiquement sélectionné.
+À partir de là, dans la barre de filtre, tapez le filtre suivant «programname:CRON*» .
+Comme vous pouvez le voir, vous avez maintenant un accès direct à tous les journaux liés au service crond sur votre machine. Vous pouvez par exemple suivre les tentatives d'accès illégales ou les mauvaises connexions.
 ![](images/rsyslog-ssh.png)
-Pour qu'il soit accessible dans le panneau du tableau de bord, cliquez sur l' option «Enregistrer» , et donnez un nom à votre panneau.
-Maintenant, dans le panneau du tableau de bord, vous pouvez cliquer sur «Ajouter», et choisir le panneau que vous venez de créer.
-Joli! Maintenant, votre panneau est inclus dans votre tableau de bord, à partir du panneau de découverte.
+Pour qu'il soit accessible dans le panneau du tableau de bord, cliquez sur l'option "save" , et donnez un nom à votre panneau.
+Maintenant, dans le panneau Dashboard, vous pouvez cliquer sur Add, et choisir le panneau que vous venez de créer.
+Maintenant, votre panneau est inclus dans votre tableau de bord, à partir du panneau de découverte.
 ![](images/rsyslog-ssh-1.png)
