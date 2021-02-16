@@ -69,7 +69,7 @@ Cette étape charge le modèle d'index recommandé pour l'écriture dans Elastic
 sudo systemctl start metricbeat
 ```
 
-## Étape 6: Affichez vos données dans KibanaÉditer
+## Étape 6: Affichez vos données dans Kibana
 Metricbeat est livré avec des tableaux de bord et des interfaces utilisateur Kibana prédéfinis pour visualiser les données de journal. Vous avez chargé les tableaux de bord plus tôt lorsque vous avez exécuté la commande `setup`.
 
 Pour ouvrir les tableaux de bord:
